@@ -1,0 +1,97 @@
+* { 
+    box-sizing: border-box; 
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+main{
+    background: rgb(224, 251, 222);
+    background: linear-gradient(360deg, rgb(245, 255, 245) 0%, rgb(163, 249, 151) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
+
+/*Service Section*/
+
+.ser-sec h1{ 
+    font-size: 2rem;
+          text-align: center; 
+          text-transform: uppercase; 
+          top: 75px;
+      } 
+
+.ser-sec h3{
+          text-align: center; 
+          /* text-transform: uppercase;  */
+      }
+
+.ser-sec h1{ 
+          position: relative; 
+          max-width: max-content; 
+          margin: 2rem auto 2rem auto; 
+      } 
+
+.ser-sec h1::after { 
+          content: ""; 
+          position: absolute; 
+          width: 75%; 
+          height: 5px; 
+          background-color: lightgreen; 
+          bottom: -1rem; 
+          left: 25px; 
+      }
+
+      .services-container { 
+          max-width: 1200px; 
+          margin: 0 auto; 
+          margin-top: 95px;
+          padding: 20px; 
+          display: flex; 
+          flex-wrap: wrap; 
+          justify-content: space-around; 
+      } 
+
+      .service-card { 
+          cursor: pointer; 
+          width: 300px; 
+          height: 350px;
+          margin: 20px; 
+          padding: 2rem 20px 20px 20px; 
+          text-align: center;
+          line-height: 1rem; 
+          font-size: 1.2rem;
+          border-radius: 5px; 
+          transition: all 0.3s ease-in-out;
+      } 
+
+      .service-card:hover { 
+          box-shadow: 0 5px 30px 0 green; 
+          transform: scale(1.1); 
+      } 
+
+      .services-container button{
+          border: none;
+          outline: 0;
+          padding: 10px;
+          margin-right: 20px;
+          font-size: 1rem;
+          background-color: #40b736;
+          text-align: center;
+          justify-content: center;
+          cursor: pointer;
+          width: 12rem;
+          border-radius: 4px;
+      }
+
+      .services-container button a { 
+          color: black; 
+          text-decoration: none; 
+      } 
+
+      @media (max-width: 768px) { 
+          .service-card { 
+              width: 100%; 
+          } 
+      }

@@ -1,0 +1,138 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<style>
+  * { 
+    box-sizing: border-box; 
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+main{
+    background: rgb(224, 251, 222);
+    background: linear-gradient(360deg, rgb(245, 255, 245) 0%, rgb(163, 249, 151) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+} 
+
+/*Plans Section*/
+
+.ser-sec h1{ 
+    font-size: 2rem;
+          text-align: center; 
+          text-transform: uppercase; 
+          padding-top: 50px;
+      } 
+
+.ser-sec h3{
+          text-align: center; 
+          text-transform: uppercase; 
+      }
+
+.ser-sec h1{ 
+          position: relative; 
+          max-width: max-content; 
+          margin: 2rem auto 2rem auto; 
+      } 
+
+.ser-sec h1::after { 
+          content: ""; 
+          position: absolute; 
+          width: 75%; 
+          height: 5px; 
+          background-color: lightgreen; 
+          bottom: -1rem; 
+          left: 25px; 
+      }
+
+      .services-container { 
+          max-width: 1200px; 
+          margin: 0 auto; 
+          padding: 20px; 
+          display: flex; 
+          flex-wrap: wrap; 
+          justify-content: space-around; 
+      } 
+
+      .service-card { 
+          cursor: pointer; 
+          width: 300px; 
+          margin: 20px; 
+          padding: 2rem 20px 20px 20px; 
+          text-align: center;
+          /* line-height: 2rem;  */
+          font-size: 1.2rem;
+          border-radius: 5px; 
+          transition: all 0.3s ease-in-out;
+      } 
+
+      .service-card:hover { 
+          box-shadow: 0 5px 30px 0 green; 
+          transform: scale(1.1); 
+      } 
+
+      .close_btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .close_btn button{
+        margin: 20px;
+        padding: 10px 40px 10px 40px;
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: black;
+        background-color: #40b736;
+        border-radius: 5px;
+        border: none;
+      }
+
+      .close_btn button a{
+        text-decoration: none;
+        color: black;
+      }
+
+      .close_btn button:hover{
+        background-color: rgb(111, 230, 111);
+      }
+
+      @media (max-width: 768px) { 
+          .service-card { 
+              width: 100%; 
+          } 
+      } 
+</style>
+    <main>
+        <section class="ser-sec">
+            <h1>Our Plans Detailes</h1> 
+            <div class="services-container">
+              {% for i in planData %} 
+                <div class="service-card">
+                    <h3 style="color: #40b736;">{{i.Plan_des_title}}</h3> 
+                    <form class="form-container"> 
+                        <ol>
+                            <li> {{i.Plan_Condition1}} </li>
+                            <li> {{i.Plan_Condition2}} </li>
+                            <li> {{i.Plan_Condition3}} </li>
+                            <li> {{i.Plan_Condition4}} </li>
+                            <li> {{i.Plan_Condition5}} </li>
+                        </ol>
+                      </form> 
+                </div>
+                {% endfor %}  
+            </div>
+        </section>    
+                <div class="close_btn">
+                   <button type="submit"><a href="/servicesplans/"> Back </a></button>
+                </div>
+          
+    </main>
+
+    <script src="/static/JavaScript/script.js"></script>
+    <script src="/static/JavaScript/drushtiscript.js"></script>
+
+{% endblock content %}

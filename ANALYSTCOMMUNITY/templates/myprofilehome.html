@@ -1,0 +1,271 @@
+{% extends 'store/Can_Ant_main.html' %}
+{% load static %}
+{% block content %}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+}
+
+main{
+    background: rgb(224, 251, 222);
+    background: linear-gradient(360deg, rgb(245, 255, 245) 0%, rgb(163, 249, 151) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;    
+}
+
+.prof_home_header{
+    background-color: #40b736;
+    height: 4em;
+    display: flex;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.prof_home_navbar {
+    width: 100%;
+    display: flex;
+    margin: auto 7%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prof_home_logo{
+    color: white;
+    font-size: 2em;
+    font-weight: semi-bold;
+    text-decoration: none;
+}
+
+.prof_home_logo:hover {
+    color: white;
+}
+
+.profile-icon-link-container {
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+}
+
+
+.profile-icon-link-container img {
+    margin: auto .3em auto auto;
+    width: 2.5em;
+}
+
+.profile-icon-link-container span {
+    margin: auto 0 .3em auto ;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+}
+
+.prof_home_navbar a {
+    text-decoration: none;
+}
+
+.main-container {
+    display: flex;
+}
+
+.container-profile{
+    width: 100%;
+    /* height: 470px; */
+    padding: 1em 1em;
+}
+
+.profile-photo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-photo-container img {
+    width: 5em;
+    height: 5em;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: .5em auto;
+}
+
+.user-content-container{
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    padding-left: 1em;
+}
+
+.username {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.user-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.876);
+    margin: 5px 0;
+    width: 80%;
+    line-height: 1.3em
+}
+
+.user-desc {
+    font-size: .9em;
+    color: black;
+    margin: 4px auto 4px 0;
+}
+
+.profile-edit-link-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.profile-edit-link-container a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: blue;
+}
+
+.container-product{
+    display: flex;
+    padding: 1em 1em;
+}
+
+.container-product .record{
+    font-size: 1.3rem;
+    font-weight: 500;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+.container-product .record tr{
+    height: 3rem;
+    text-align: center;
+}
+
+.container-product button{
+    background-color: #40b736;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+
+}
+
+.container-product button:hover{
+    background-color: green;
+    color: white;
+}
+
+.quantity{
+    display:inline-block;
+    font-weight:700;
+    padding-right: 20px;
+  }
+  .chg-quantity{
+    width: 12px;
+    cursor: pointer;
+    display: block;
+  }
+</style>
+  {% comment %} <main>
+    <div class="prof_home_header">
+        <nav class="prof_home_navbar">
+            <p class="prof_home_logo">Profile</p>
+                <a class="profile-icon-link-container" href="profile.html">
+                    <img src="/media/defaultuser.svg" alt="profile-icon">
+                    <span class="header-username">Hello, {{user.user_name}}</span>
+                </a>
+        </nav>
+    </div>
+
+    <script>
+        var cross = document.getElementById('cross')
+        cross.addEventListener('click', ()=> {
+            document.getElementsByClassName('notification-container')[0].style.display = 'none';
+        })
+
+    </script>
+
+
+    <div class="main-container">
+      <div class="container" style="width: 30%;">
+        <div class="container-profile">
+            <div class="profile-photo-container">
+                <img src="{{user.profile.user_profile_image.url}}" alt="User Image" width="100px">
+            </div>
+
+
+            <div class="user-content-container">
+                <p class="username">{{user.profile.user_name}}</p>
+                <p class="user-title">{{user.profile.user_designation}}</p>
+                <p class="user-desc">{{user.profile.user_bio}}</p>
+                <div class="profile-edit-link-container">
+                    <a href="/myprofile/">Edit</a>
+                </div>
+            </div>
+        </div>
+      </div>
+    
+    </div>
+  </main> {% endcomment %}
+<main>
+    <div class="prof_home_header">
+        <nav class="prof_home_navbar">
+            <p class="prof_home_logo">Profile</p>
+                <a class="profile-icon-link-container" href="profile.html">
+                    <img src="/media/defaultuser.svg" alt="profile-icon">
+                    <span class="header-username">Hello, {{user.user_name}}</span>
+                </a>
+        </nav>
+    </div>
+
+    <script>
+        var cross = document.getElementById('cross')
+        cross.addEventListener('click', ()=> {
+            document.getElementsByClassName('notification-container')[0].style.display = 'none';
+        })
+
+    </script>
+  <div class="main-container">
+    <div class="container" style="width: 30%;">
+      <div class="container-profile">
+          <div class="profile-photo-container">
+              <img src="{{user.profile.user_profile_image.url}}" alt="User Image" width="100px">
+          </div>
+
+
+          <div class="user-content-container">
+              <p class="username">{{user.profile.user_name}}</p>
+              <p class="user-title">{{user.profile.user_designation}}</p>
+              <p class="user-desc">{{user.profile.user_bio}}</p>
+              <div class="profile-edit-link-container">
+                  <a href="/myprofile/">Edit</a>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+    </div>
+  </div>
+</main>
+
+
+    <script src="/static/JavaScript/script.js"></script>
+    
+{% endblock content %}

@@ -1,0 +1,273 @@
+{% extends 'store/Can_Ant_main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box; 
+  }
+  
+  body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.2rem;  
+  }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .sidebar a {
+      display: block;
+      color: black;
+      text-decoration: none;
+      padding: 10px 0;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+      margin-left: 4rem;
+      width: 50rem;
+
+    }
+    /* ... Existing job card styles ... */
+
+    .logout-button {
+      display: block;
+      width: 50%;
+      padding: 10px;
+      background-color: #e74c3c;
+      border: none;
+      border-radius: 5px;
+      color: black;
+      cursor: pointer;
+      font-weight: 500;
+      margin: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .logout-button a{
+      color: black;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .logout-button:hover {
+      background-color: red;
+    }
+
+  .candidates-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+
+  .candidates-table th,
+  .candidates-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+  }
+
+  .resume-download {
+      color: #3498db;
+      text-decoration: none;
+      transition: color 0.3s;
+  }
+
+  .resume-download:hover {
+      color: #2980b9;
+  }
+
+  .candidates-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+
+  .candidates-table th,
+  .candidates-table td {
+      border: 2px solid #a59393;
+      padding: 10px;
+      text-align: left;
+  }
+
+  .candidates-table th {
+      font-weight: bold;
+      color: #555;
+  }
+
+  .candidates-table td {
+      color: #333;
+  }
+
+  .resume-download {
+      color: #3498db;
+      text-decoration: none;
+      transition: color 0.3s;
+  }
+
+  .resume-download:hover {
+      color: #2980b9;
+  }
+
+  /* Additional styling for a more modern table appearance */
+
+  .candidates-table {
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+  }
+
+  .candidates-table th,
+  .candidates-table td {
+      transition: background-color 0.3s, color 0.3s;
+  }
+
+  .candidates-table tr:hover {
+      background-color: #f9f9f9;
+  }
+
+  .candidates-table td a {
+      display: inline-block;
+      padding: 5px 10px;
+      border: 1px solid #3498db;
+      border-radius: 5px;
+      color: #3498db;
+      transition: background-color 0.3s, color 0.3s;
+  }
+
+  .candidates-table td a:hover {
+      background-color: #3498db;
+      color: white;
+  }
+
+  .accept-button,
+  .reject-button {
+      display: inline-block;
+      padding: 5px 10px;
+      margin-right: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+  }
+
+  .accept-button {
+      background-color: #2ecc71;
+      color: white;
+  }
+
+  .reject-button {
+      background-color: #e74c3c;
+      color: white;
+  }
+
+  .accept-button:hover,
+  .reject-button:hover {
+      opacity: 0.8;
+  }
+
+  /* Styling for "See Your Profile" button */
+
+  .profile-button {
+      display: inline-block;
+      padding: 5px 10px;
+      width: 10rem;
+      background-color: #2980b9;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+  }
+  </style>
+
+<main>
+    <div class="prof_home_header">
+        <nav class="prof_home_navbar">
+            <p class="prof_home_logo">Profile</p>
+                <a class="profile-icon-link-container" href="profile.html">
+                    <img src="/media/defaultuser.svg" alt="profile-icon">
+                    <span class="header-username">Hello, {{user.user_name}}</span>
+                </a>
+        </nav>
+    </div>
+
+    <script>
+        var cross = document.getElementById('cross')
+        cross.addEventListener('click', ()=> {
+            document.getElementsByClassName('notification-container')[0].style.display = 'none';
+        })
+
+    </script>
+
+
+    <div class="main-container">
+      <div class="container" style="width: 25%;">
+        <div class="container-profile">
+            <div class="profile-photo-container">
+                <img src="{{user.profile.user_profile_image.url}}" alt="User Image" width="100px">
+            </div>
+
+
+            <div class="user-content-container">
+                <p class="username">{{user.profile.user_name}}</p>
+                <p class="user-title">{{user.profile.user_designation}}</p>
+                <p class="user-desc">{{user.profile.user_bio}}</p>
+                <div class="profile-edit-link-container">
+                    <a href="/myprofile/">Edit</a>
+                </div>
+            </div>
+        </div>
+        <nav class="sidebar">
+          <ul>
+            <li><a href="{% url 'dash' %}"><i class='bx bxs-user'></i> Dashboard</a></li>
+            <li><a href="{% url 'applylist' %}"><i class='bx bx-folder-plus'></i> My Plan</a></li>
+            {% comment %} <li><a href="{% url 'postjob' %}"><i class="fas fa-plus-circle"></i> New Plan Post</a></li> {% endcomment %}
+          </ul>
+        </nav>
+        <button class="logout-button"><a href="{% url 'logout' %}">Logout</a></button>
+      </div>
+
+      <div class="container">
+        <div class="content">
+            <h2>Plan Details</h2>
+            {% if planlist %}
+            <table class="candidates-table">
+                <thead>
+                    <tr>
+                        <th>Plan Name</th>
+                        <th>Plan Role</th>
+                        <th>Status</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for candi in planlist %}
+                    <tr>
+                        <td>{{candi.plan.plan.name}}</td>
+                        <td>{{candi.plan.plan.title}}</td>
+                        <td>{{candi.plan.status}}</td>
+                         
+                    </tr>
+                    {% endfor %}
+                    <!-- Add more rows for other candidates -->
+                </tbody>
+            </table>
+            {% else %}
+                <h2>No Application received</h2>
+            {% endif %} 
+            
+        </div>
+    </div>
+  </div>
+</main>
+
+  <script src="/static/JavaScript/script.js"></script>
+    
+{% endblock content %}

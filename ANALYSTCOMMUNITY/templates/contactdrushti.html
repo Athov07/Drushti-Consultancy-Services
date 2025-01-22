@@ -1,0 +1,337 @@
+{% extends 'store/Can_Ant_main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+<style> 
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  
+  body{
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+  }
+
+main{
+  background: linear-gradient(360deg, rgb(245, 255, 245) 0%, rgb(163, 249, 151) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  width: 100%;
+  background: white;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 10px 20px lightgreen;
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+
+.container .content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container .content .left-side{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  position: relative;
+}
+
+.content .left-side::before{
+  content: '';
+  position: absolute;
+  height: 70%;
+  width: 2px;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #afafb6;
+}
+
+.content .left-side .details{
+  margin: 14px;
+  text-align: center;
+}
+
+.content .left-side .details i{
+  font-size: 30px;
+  color: rgb(35, 179, 35);
+  margin-bottom: 10px;
+}
+
+.content .left-side .details .topic{
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.content .left-side .details .text-one,
+.content .left-side .details .text-two{
+  font-size: 1.0rem;
+  font-weight: 400;
+  color: #6c6a6a;
+}
+
+.left-side .socialMedia{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.socialMedia a{
+    width: 35px;
+    height: 35px;
+    font-size: 1.3rem;
+    text-decoration: none;
+    text-align: center;
+    margin-right: 15px;
+    border-radius: 5px;
+    background-color: rgb(35, 179, 35);
+    transition:  0.4s;
+}
+
+.socialMedia a i{
+    color: white;
+    font-size: 18px;
+    line-height: 35px;
+    border: 1px solid transparent;
+    transition-delay: 0.4s;
+}
+
+.socialMedia a:hover{
+    transform: translateY(-5px);
+    background-color: white;
+    color: green;
+    border: 2px solid green;
+}
+
+.socialMedia a:hover i{
+    color: green;
+    font-weight: 800;
+}
+
+
+.container .content .right-side{
+  width: 75%;
+  margin-left: 75px;
+}
+.content .right-side .topic-text{
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgb(35, 179, 35);
+}
+.right-side .input-box{
+  height: 50px;
+  width: 100%;
+  margin: 12px 0;
+}
+.right-side .input-box input,
+.right-side .input-box textarea{
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgb(172, 235, 172);
+  border-radius: 6px;
+  padding: 0 15px;
+  resize: none;
+}
+.right-side .message-box{
+  min-height: 110px;
+}
+.right-side .input-box textarea{
+  padding-top: 6px;
+}
+.right-side .input-btn button{
+  display: inline-block;
+  margin-top: 12px;
+}
+.right-side .input-btn button{
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: rgb(35, 179, 35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.input-btn button:hover{
+  background: rgb(120, 233, 120);
+  color: black;
+}
+
+@media (max-width: 950px) {
+  .container{
+    width: 90%;
+    padding: 30px 40px 40px 35px ;
+  }
+  .container .content .right-side{
+   width: 75%;
+   margin-left: 55px;
+}
+}
+@media (max-width: 820px) {
+  .container{
+    margin: 40px 0;
+    height: 100%;
+  }
+  .container .content{
+    flex-direction: column-reverse;
+  }
+ .container .content .left-side{
+   width: 100%;
+   flex-direction: row;
+   margin-top: 40px;
+   justify-content: center;
+   flex-wrap: wrap;
+ }
+ .container .content .left-side::before{
+   display: none;
+ }
+ .container .content .right-side{
+   width: 100%;
+   margin-left: 0;
+ }
+}
+</style>
+ <main>
+  <div class="container">
+    <div class="content">
+    {% for j in contactData %}
+      <div class="left-side">
+        <div class="address details">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="topic">Address</div>
+          <div class="text-one">{{j.my_location}}</div>
+          <div class="text-two">{{j.location_des}}</div>
+        </div>
+        <div class="phone details">
+          <i class="fas fa-phone-alt"></i>
+          <div class="topic">Phone</div>
+          <div class="text-one">{{j.my_phone}}</div>
+          <div class="text-one">{{j.my_phone1}}</div>
+        </div>
+        <div class="email details">
+          <i class="fas fa-envelope"></i>
+          <div class="topic">Email</div>
+          <div class="text-one">{{j.my_email}}</div>
+          <div class="text-two">{{j.my_email1}}</div>
+        </div>
+
+        <div class="socialMedia">
+            <a href="#"><i class='bx bxl-facebook-circle' ></i></a>
+            <a href="#"><i class='bx bxl-twitter' ></i></a>
+            <a href="#"><i class='bx bxl-instagram' ></i></a>
+            <a href="#"><i class='bx bxl-whatsapp'></i></a>
+            <a href="#"><i class='bx bxl-linkedin' ></i></a>
+        </div>
+      </div>
+
+
+
+      <div class="right-side">
+        <div class="topic-text">{{j.cont_title}}</div>
+        <h5>{{j.cont_meg}}</h5>
+      <form method="post" action="{% url 'save_Contact' %}" id="contact_form" novalidate="novalidate">
+        {% csrf_token %}
+        <div class="input-box">
+          <input type="text" name="uname" placeholder="Enter your name" required="required">
+        </div>
+        <div class="input-box">
+          <input type="text" name="email" placeholder="Enter your email" required="required">
+        </div>
+        <div class="input-box message-box">
+            <input type="text" name="msg" placeholder="Enter your message" required="required">
+        </div>
+        <div class="input-btn">
+          <button type="submit" name="save" value="Send Now" class="submit">{{j.cont_btn}}</button>
+        </div>
+        
+      </form>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+</main> 
+
+
+{% comment %} <main>
+<div class="container">
+  {% for a in contactData %}
+  <div class="content">
+    <div class="left-side">
+      <div class="address details">
+        <i class="fas fa-map-marker-alt"></i>
+        <div class="topic">Address</div>
+        <div class="text-one">{{a.my_location}}</div>
+        <div class="text-two">{{a.location_des}}</div>
+      </div>
+      <div class="phone details">
+        <i class="fas fa-phone-alt"></i>
+        <div class="topic">Phone</div>
+        <div class="text-one">{{a.my_phone}}</div>
+      </div>
+      <div class="email details">
+        <i class="fas fa-envelope"></i>
+        <div class="topic">Email</div>
+        <div class="text-one">{{a.my_email}}</div>
+        
+      </div>
+
+      <div class="socialMedia">
+          <a href="#"><i class='bx bxl-facebook-circle' ></i></a>
+          <a href="#"><i class='bx bxl-twitter' ></i></a>
+          <a href="#"><i class='bx bxl-instagram' ></i></a>
+          <a href="#"><i class='bx bxl-whatsapp'></i></a>
+          <a href="#"><i class='bx bxl-linkedin' ></i></a>
+      </div>
+    </div>
+
+
+
+    <div class="right-side">
+      <div class="topic-text">{{a.cont_title}}</div>
+      <h3>{{a.cont_meg}}</h3>
+    <form method="post" action="{% url 'save_Contact' %}" id="contact_form" novalidate="novalidate">
+      {% csrf_token %}
+      <div class="input-box">
+        <input type="text" name="uname" placeholder="Enter your name" required="required">
+      </div>
+      <div class="input-box">
+        <input type="text" name="email" placeholder="Enter your email" required="required">
+      </div>
+      <div class="input-box message-box">
+          <input type="text" name="msg" placeholder="Enter your message" required="required">
+      </div>
+      <div class="input-btn">
+        <button type="submit" name="save" value="Send Now" class="submit">{{a.cont_btn}}</button>
+      </div>
+      
+    </form>
+  </div>
+  </div>
+  {% endfor %}
+</div> 
+</main>{% endcomment %}
+
+<script src="/static/JavaScript/drushtiscript.js"></script>
+<script src="/static/JavaScript/script.js"></script>
+
+{% endblock content %}

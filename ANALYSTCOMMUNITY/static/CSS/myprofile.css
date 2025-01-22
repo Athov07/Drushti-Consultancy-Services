@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+main{
+    background: rgb(224, 251, 222);
+    background: linear-gradient(360deg, rgb(245, 255, 245) 0%, rgb(163, 249, 151) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;    
+}
+
+.prof_home_header{
+    background-color: #40b736;
+    height: 4em;
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.prof_home_navbar{
+    width: 100%;
+    display: flex;
+    margin: auto 7%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prof_home_logo{
+    color: white;
+    font-size: 2em;
+    font-weight: semi-bold;
+    text-decoration: none;
+}
+
+.prof_home_logo:hover {
+    color: white;
+}
+
+.profile-icon-link-container {
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+}
+
+
+.profile-icon-link-container img {
+    margin: auto .3em auto auto;
+    width: 2.5em;
+}
+
+.profile-icon-link-container span {
+    margin: auto 0 .3em auto ;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+}
+
+.prof_home_navbar a {
+    text-decoration: none;
+}
+
+.main-container {
+    display: flex;
+}
+
+.container-profile{
+    width: 100%;
+    /* height: 470px; */
+    padding: 1em 1em;
+}
+
+.profile-photo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-photo-container img {
+    width: 5em;
+    height: 5em;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: .5em auto;
+}
+
+.user-content-container{
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    padding-left: 1em;
+}
+
+.username {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.user-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.876);
+    margin: 5px 0;
+    width: 80%;
+    line-height: 1.3em
+}
+
+.user-desc {
+    font-size: .9em;
+    color: black;
+    margin: 4px auto 4px 0;
+}
+
+.profile-edit-link-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.profile-edit-link-container a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: blue;
+}

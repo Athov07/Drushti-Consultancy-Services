@@ -1,0 +1,129 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href= "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<style>
+    * { 
+        box-sizing: border-box; 
+    }
+    body {
+        font-family: 'Times New Roman', Times, serif;
+    }
+    
+    main{
+        background: rgb(224, 251, 222);
+        background: linear-gradient(360deg, rgb(245, 255, 245) 0%, rgb(163, 249, 151) 100%);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    } 
+
+    /*Service Section*/
+
+.ser-sec h1{ 
+    font-size: 2rem;
+    text-align: center; 
+    text-transform: uppercase;
+    padding-top: 20px; 
+} 
+
+.ser-sec h4{
+    text-align: center; 
+    {% comment %} text-transform: uppercase;  {% endcomment %}
+}
+
+.ser-sec h1{ 
+    position: relative; 
+    max-width: max-content; 
+    margin: 2rem auto 2rem auto; 
+} 
+
+.ser-sec h1::after { 
+    content: ""; 
+    position: absolute; 
+    width: 75%; 
+    height: 5px; 
+    background-color: lightgreen; 
+    bottom: -1rem; 
+    left: 25px; 
+}
+
+.services-container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+} 
+
+.service-card { 
+    cursor: pointer; 
+    width: 300px; 
+    margin: 20px; 
+    padding: 2rem 20px 20px 20px; 
+    text-align: center;
+line-height: 2rem; 
+font-size: 1.2rem;
+    border-radius: 5px; 
+    transition: all 0.3s ease-in-out;
+} 
+
+.service-card:hover { 
+    box-shadow: 0 5px 30px 0 green; 
+    transform: scale(1.1); 
+} 
+
+.services-container button{
+    border: none;
+    outline: 0;
+    padding: 10px;
+    margin-right: 20px;
+    font-size: 1rem;
+    background-color: #40b736;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 12rem;
+    border-radius: 4px;
+}
+
+.services-container button a { 
+    color: black; 
+    text-decoration: none; 
+    font-size: 1.2rem
+} 
+
+@media (max-width: 768px) { 
+    .service-card { 
+        width: 100%; 
+    } 
+}
+
+</style>
+<main>
+        
+<section class="ser-sec">
+<h1>Our Services</h1> 
+<div class="services-container">
+{% for n in servicesData %}
+
+<div class="service-card"> 
+        <div class="icon-container"> 
+            <img width="120px" height="120px" src="{{n.Analytics_icon.url}}" alt="external-Data-Analyst-accounting-and-consulting-smashingstocks-flat-smashing-stocks-2"/> 
+        </div> 
+        <h4>{{n.Analytics_title}}</h4> 
+        <p>{{n.Analytics_des}}</p> 
+        <button type="submit" style="margin-top: 34px;"><a href="/servicesplans/" class="button" >{{n.Analytics_btn}}</a></button> 
+    </div>
+
+{% endfor %}
+</section>
+</main>
+
+<script src="/static/JavaScript/script.js"></script>
+<script src="/static/JavaScript/drushti.js"></script>
+<script src="/static/JavaScript/cart.js"></script>
+
+{% endblock content %}

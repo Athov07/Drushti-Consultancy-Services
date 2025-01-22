@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Ecom</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+
+
+    <script type="text/javascript">
+      var user = "{{request.user}}";
+
+      function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      var csrftoken = getToken("csrftoken");
+      console.log('CSRFTOKEN:', csrftoken)
+
+      function getCookie(name){
+        var cookieArr = document.cookie.split(";");
+
+        for(var i = 0; i < cookieArr.length; i++){
+          var cookiePair = cookieArr[i].split("=");
+
+          if(name == cookiePair[0].trim()){
+            return decodeURLComponent(cookiePair[1]);
+          }
+        }
+
+        return null;
+      }
+
+      var cart = JSON.parse(getCookie('cart'))
+      if(cart == undefined){
+        cart = {}
+        console.log('cart was created!')
+        document.cookie = 'cart' + JSON.stringify(cart) + ";domain=;path=/"
+      }
+      console.log('cart:', cart)
+
+
+
+    </script>
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'store' %}">Drushti <img width="40" height="40" src="https://img.icons8.com/fluency/48/bullish.png" alt="bullish"/></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"><a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a></li>
+          <li class="nav-item active"><a class="nav-link" href="{% url 'about' %}">About Us <span class="sr-only">(current)</span></a></li>
+          <li class="nav-item active"><a class="nav-link" href="{% url 'services' %}">Services <span class="sr-only">(current)</span></a></li>
+          <li class="nav-item active"><a class="nav-link" href="{% url 'store' %}">Packages <span class="sr-only">(current)</span></a></li>
+          <li class="nav-item active"><a class="nav-link" href="{% url 'contact' %}">Contact <span class="sr-only">(current)</span></a></li>
+          <li class="nav-item active"><a class="nav-link" href="{% url 'userLogIn' %}">LogIn <span class="sr-only">(current)</span></a></li>  
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+          {% comment %} <a href="#" class="btn btn-warning">Login</a> {% endcomment %}
+
+            
+          <a href="{% url 'dashboard' %}"><img id="cart-icon" src="{% static 'images/profileicon.png' %}" /></a>  
+          <a href="{% url 'cart' %}"><img id="cart-icon" src="{% static 'images/search.webp' %}" /></a>
+          <a href="{% url 'cart' %}"><img id="cart-icon" src="{% static 'images/shopping-bag.jpg' %}" /></a>
+            
+          
+          <p id="cart-total">{{cartItems}}</p>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+<main>
+    <div class="container">
+      <br />
+      {% block content %} 
+      {% endblock content %}
+    </div>
+  </main>
+    <!-- Section Footer -->
+
+<section id="My_Footer">
+  <div class="MyWeb">
+    <footer class="footer">
+      <ul class="social-icon">
+        <li class="social-icon__item"><a class="social-icon__link" href="#">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a></li>
+        <li class="social-icon__item"><a class="social-icon__link" href="#">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </a></li>
+        <li class="social-icon__item"><a class="social-icon__link" href="#">
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a></li>
+        <li class="social-icon__item"><a class="social-icon__link" href="#">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a></li>
+      </ul>
+      <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href={% url 'home' %}>Home</a></li>
+        <li class="menu__item"><a class="menu__link" href={% url 'about' %}>About</a></li>
+        <li class="menu__item"><a class="menu__link" href={% url 'services' %}>Services</a></li>
+        <li class="menu__item"><a class="menu__link" href={% url 'servicesplans' %}>Plans</a></li>
+        <li class="menu__item"><a class="menu__link" href={% url 'contact' %}></a></li>
+        <li class="menu__item"><a class="menu__link" href={% url 'feedback' %}>Feedback</a></li>
+        <li class="menu__item"><a class="menu__link" href={% url 'userLogIn' %}>Login</a></li>
+        <li class="menu__item"><a class="menu__link" href={% url 'policy' %}>Privacy Policy</a></li>
+        
+      </ul>
+      <p>&copy; 2024 Drushti Pvt. Ltd. | All Rights Reserved</p>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </div>
+  </section>
+
+
+<script src="/static/JavaScript/drushti.js"></script>
+<script src="/static/JavaScript/script.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="{% static 'JavaScript/cart.js' %}"
+    ></script>
+  </body>
+</html>

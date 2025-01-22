@@ -1,0 +1,740 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href= "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<style>
+  * { 
+    box-sizing: border-box; 
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+main{
+    background: rgb(224, 251, 222);
+    background: linear-gradient(360deg, rgb(245, 255, 245) 0%, rgb(163, 249, 151) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+} 
+
+
+/* About Section */
+
+.about {
+line-height: 2rem;
+padding: 50px 0 20px 0;
+text-align: center;
+}
+
+.about h1 {
+font-size: 2.5rem;
+margin-bottom: 20px;
+}
+
+.about p {
+font-size: 1.5rem;
+color: #323030;
+max-width: 800px;
+margin: 0 auto;
+}
+
+.about-info {
+margin: 2rem 2rem;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: left;
+}
+
+.about-img {
+width: 20rem;
+height: 20rem;
+
+}
+
+.about-img img {
+width: 100%;
+height: 100%;
+border-radius: 5px;
+object-fit: contain;
+}
+
+.about-info p {
+font-size: 1.3rem;
+margin: 0 2rem;
+text-align: justify;
+}
+
+button {
+border: none;
+outline: 0;
+padding: 10px;
+margin: 2rem;
+font-size: 1rem;
+color: white;
+background-color: #40b736;
+text-align: center;
+cursor: pointer;
+width: 15rem;
+border-radius: 4px;
+}
+
+button a{
+    text-decoration: none;
+    font-size:1.2rem;
+    color:black;
+}
+
+button:hover {
+background-color: #1f9405;
+}
+
+@media (max-width: 768px){
+.about h1 {
+font-size: 2rem;
+}
+
+.about p {
+font-size: 0.9rem;
+}
+
+.about-info {
+flex-direction: column;
+text-align: center;
+}
+
+.about-img {
+width: 70%;
+height: 70%;
+margin-bottom: 1rem;
+}
+
+.about-info p {
+margin: 1rem 2rem;
+}
+
+.about-info button {
+margin: 1rem 2rem;
+width: 10rem;
+}
+}
+
+/*Service Section*/
+
+.ser-sec h1{ 
+font-size: 2rem;
+    text-align: center; 
+    text-transform: uppercase; 
+} 
+
+.ser-sec h4{
+    text-align: center; 
+    {% comment %} text-transform: uppercase;  {% endcomment %}
+}
+
+.ser-sec h1{ 
+    position: relative; 
+    max-width: max-content; 
+    margin: 2rem auto 2rem auto; 
+} 
+
+.ser-sec h1::after { 
+    content: ""; 
+    position: absolute; 
+    width: 75%; 
+    height: 5px; 
+    background-color: lightgreen; 
+    bottom: -1rem; 
+    left: 25px; 
+}
+
+.services-container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+} 
+
+.service-card { 
+    cursor: pointer; 
+    width: 300px; 
+    margin: 20px; 
+    padding: 2rem 20px 20px 20px; 
+    text-align: center;
+line-height: 2rem; 
+font-size: 1.2rem;
+    border-radius: 5px; 
+    transition: all 0.3s ease-in-out;
+} 
+
+.service-card:hover { 
+    box-shadow: 0 5px 30px 0 green; 
+    transform: scale(1.1); 
+} 
+
+.services-container button{
+    border: none;
+    outline: 0;
+    padding: 10px;
+    margin-right: 20px;
+    font-size: 1rem;
+    background-color: #40b736;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 12rem;
+    border-radius: 4px;
+}
+
+.services-container button a { 
+    color: black; 
+    text-decoration: none; 
+} 
+
+@media (max-width: 768px) { 
+    .service-card { 
+        width: 100%; 
+    } 
+} 
+
+/*Our Client*/
+
+.atharv-hader{
+    text-align: center;
+}
+.atharv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.slider-container {
+    width: 744px; /* 248px x 3 images */
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.slider {
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+.slider img {
+    width: 248px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 16px; /* Spacing between images */
+}
+
+/* Add some spacing after the last image for smoother transitions */
+.slider img:last-child {
+    margin-right: 0;
+}
+
+
+/* Section FAQs */
+#FAQ{
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 40px 80px 40px 80px;
+}
+
+.accordion{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(360deg, rgb(245, 255, 245) 0%, rgb(163, 249, 151) 100%);
+    box-shadow: 0 0 30px 0 rgb(125, 245, 125);
+    border-radius: 25px;
+    padding: 40px;
+}
+
+.accordion .image-box{
+    height: 360px;
+    width: 360px;
+}
+
+.accordion .image-box img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.accordion .accordion-text{
+    width: 60%;
+}
+
+.accordion .accordion-text .title{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.accordion .accordion-text .title .faq-text{
+    margin-top: 25px;
+    height: 263px;
+    /*overflow-y: auto;*/
+}
+
+.accordion .accordion-text li{
+    list-style: none;
+    cursor: pointer;
+}
+
+.accordion-text li .question-arrow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.accordion-text li .question-arrow .question{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: black;
+    transition: all 0.3 ease;
+    
+}
+
+.accordion-text li .question-arrow .arrow{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: black;
+    transition: all 0.3 ease;
+    transform: rotate(360deg); 
+}
+
+
+.accordion-text li:hover .question-arrow .question,
+.accordion-text li:hover .question-arrow .arrow{
+    color: #7d2ae8;
+}
+
+.accordion-text li.showAnswer .question-arrow .question,
+.accordion-text li.showAnswer .question-arrow .arrow{
+    color: #7d2ae8;
+}
+
+.accordion-text li.showAnswer .question-arrow .arrow{
+    transform: rotate(-180deg);
+}
+
+.accordion-text li .line{
+    display: block;
+    height: 2px;
+    width: 100%;
+    margin: 10px 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.accordion-text li p{
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: black;
+    display: none;
+}
+
+.accordion-text li.showAnswer p{
+    display: block;
+}
+
+.faq-text::-webkit-scrollbar{
+    display: none;
+}
+
+@media(max-width: 768px){
+#FAQ{
+    padding: 20px;
+    padding-bottom: 50px;
+}
+.accordion{
+    flex-direction: column;
+    max-width: 100%;
+}
+.accordion .image-box{
+    height: 180px;
+    width: 200px;
+}
+
+.accordion .accordion-text{
+    width: 100%;
+}
+
+}
+
+/*Section Feedback*/
+
+.opinion h2{ 
+font-size: 1.5rem;
+text-align: center; 
+} 
+
+.opinion h2{ 
+position: relative; 
+max-width: max-content; 
+margin: 2rem auto 2rem auto; 
+} 
+
+.opinion h2::after { 
+content: ""; 
+position: absolute; 
+width: 75%; 
+height: 5px; 
+background-color: green; 
+bottom: -1rem; 
+left: 25px; 
+}
+
+.support-feedback {
+background: lightgreen;
+height: 14em;
+margin: auto;
+max-width: 40em;
+
+.support-feedback-screen {
+height: 100%;
+margin: 0;
+padding: 2em;
+position: relative;
+transition: transform 0.5s ease-in-out;
+}
+
+.btn {
+border-radius: 0;
+}
+
+.btn-outline {
+background: inherit;
+border: 2px solid #000;
+}
+
+.button-list {
+margin: 0;
+padding: 0;
+}
+.button-list li {
+display: inline-block;
+}
+
+.feedback-screen-query {
+text-align: center;
+
+.button-list {
+width: 100%;
+
+li {
+  margin: 0 0.5em;
+  width: 32%;
+}
+}
+
+.query-button {
+[type=radio] {
+  display: none;
+  
+  & ~ label {
+    display: inline-block;
+    min-width: 100%;
+
+    &.btn-yes {
+      padding: 10px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-top: 20px;
+      background-color: white;
+      border-color: green;
+      color: green;
+    }
+
+    &.btn-no {
+      padding: 10px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-top: 20px;
+      background-color: white;
+      border-color: darkred;
+      color: darkred;
+    }
+  }
+}
+}
+}
+}
+
+@media(max-width: 768px){
+.opinion h2{ 
+font-size: 1.5rem;
+} 
+
+.query-button {
+[type=radio] {
+.btn-yes {
+    font-size: 1rem;
+    margin-top: 0px;
+  }
+
+  &.btn-no {
+    font-size: 1rem;
+    margin-top: 0px;
+  }
+}
+}
+}
+
+</style>
+    <main>
+        <section class="about">
+            <h1>About Us</h1>
+            <p style="font-weight: bold">Drushti is a leading platform...</p>
+            <div class="about-info">
+                <div class="about-img">
+                    <img src="/static/ExploreDrushti/DrushtiAbout1.png" alt="About img 1">
+                </div>
+                <div>
+                <p>    Analyzing small business communities through data is crucial for understanding their complexities and making informed decisions. Small business communities, whether local shops or online networks, are complex ecosystems shaped by various social, cultural, economic, and environmental factors. This project aims to deeply explore a specific small business community using qualitative and quantitative research methods to uncover patterns and insights that define its identity and operations.Through thorough data analysis, this study aims to create a detailed picture of the small business community. It will highlight important aspects such as the demographics of customers, business relationships, communication channels, and shared values.</p>
+                <button><a href="about/">Read More...</a></button>
+            </div>
+            </div>
+        </section>
+    <section class="ser-sec">
+	<h1>Our Services</h1> 
+	<div class="services-container">
+    {% for n in servicesData %}
+    
+    <div class="service-card"> 
+			<div class="icon-container"> 
+				<img width="120px" height="120px" src="{{n.Analytics_icon.url}}" alt="external-Data-Analyst-accounting-and-consulting-smashingstocks-flat-smashing-stocks-2"/> 
+			</div> 
+			<h4>{{n.Analytics_title}}</h4> 
+			<p>{{n.Analytics_des}}</p> 
+			<button type="submit" style="margin-top: 34px;"><a href="/servicesplans/" class="button" >{{n.Analytics_btn}}</a></button> 
+		</div>
+
+    {% endfor %}
+
+  {% comment %} <div class="service-card"> 
+			<div class="icon-container"> 
+				<img width="120px" height="120px" src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/external-Data-Analyst-accounting-and-consulting-smashingstocks-flat-smashing-stocks-2.png" alt="external-Data-Analyst-accounting-and-consulting-smashingstocks-flat-smashing-stocks-2"/> 
+			</div> 
+			<h3>Data analysts</h3> 
+			<p>Data analysts collect and interpret different types of data. The purpose of data analysis is typically to provide a data-driven foundation for decision-making. Data analysts look for patterns or trends and use these to make projections. They may also provide easy-to-read reports that simplify data for companies.</p> 
+			<button type="submit" style="margin-top: 34px;"><a href="#" class="button">Get Analytics</a></button> 
+		</div> 
+
+		<div class="service-card"> 
+			<div class="icon-container"> 
+				<img width="120px" height="120px" src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/external-Data-Analyst-testing-services-smashingstocks-flat-smashing-stocks.png" alt="external-Data-Analyst-testing-services-smashingstocks-flat-smashing-stocks"/> 
+			</div> 
+			<h3>Business analysts</h3> 
+			<p>Business analysts study the current state of a business and find areas that could improve. Areas they may study include customer needs, technology requirements and financial data. After conducting their analysis, business analysts present their conclusions to managers to help them implement changes.</p> 
+            <button type="submit"><a href="#" class="button">Get Analytics</a></button>
+		</div> 
+
+		<div class="service-card"> 
+			<div class="icon-container"> 
+				<img width="120px" height="120px" src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/external-Data-Analyst-big-data-and-bi-services-smashingstocks-flat-smashing-stocks-3.png" alt="external-Data-Analyst-big-data-and-bi-services-smashingstocks-flat-smashing-stocks-3"/> 
+			</div> 
+			<h3>Data Scientist</h3> 
+			<p>A data scientist is responsible for extracting insights from data. They use their analytical skills to develop predictive models and algorithms. Data scientists often work in software development, marketing, and financial analysis. </p> 
+            <button type="submit" style="margin-top: 125px;"><a href="#" class="button">Get Analytics</a></button> 
+		</div> 
+
+		<div class="service-card"> 
+			<div class="icon-container"> 
+				<img width="120px" height="120px" src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/external-Data-Analyst-accounting-and-consulting-smashingstocks-flat-smashing-stocks-3.png" alt="external-Data-Analyst-accounting-and-consulting-smashingstocks-flat-smashing-stocks-3"/> 
+			</div> 
+			<h3>Financial analysts</h3> 
+			<p>Financial analysts study the history of financial data for individuals and organizations to provide projections and financial health reports. They also explore investment opportunities and inform their clients of the risks and benefits involved with certain decisions. Financial analysts work with accountants.</p> 
+            <button type="submit"><a href="#" class="button">Get Analytics</a></button> 
+		</div> 
+
+		<div class="service-card"> 
+			<div class="icon-container"> 
+				<img width="120px" height="120px" src="https://img.icons8.com/external-itim2101-flat-itim2101/64/external-Solution-business-and-financial-itim2101-flat-itim2101.png" alt="external-Solution-business-and-financial-itim2101-flat-itim2101"/> 
+			</div> 
+			<h3>Sales Analyst</h3> 
+			<p>A sales analyst is responsible for analyzing sales data and developing sales plans. They use their analytical skills to identify trends in customer buying behaviour, assess market opportunities, and generate sales strategies. Sales analysts often work in retail, e-commerce, and business-to-business sales.</p> 
+            <button type="submit"><a href="#" class="button">Get Analytics</a></button> 
+		</div> 
+
+		<div class="service-card"> 
+			<div class="icon-container"> 
+        <img width="120px" height="120px" src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/external-Data-Analyst-accounting-and-consulting-smashingstocks-flat-smashing-stocks-4.png" alt="external-Data-Analyst-accounting-and-consulting-smashingstocks-flat-smashing-stocks-4"/>
+			</div> 
+			<h3>Risk Analyst</h3> 
+			<p>A risk analyst identifies an organization's financial, operational, and reputational health risks. They use their analytical skills to assess the probability of events occurring and the potential impact of those events. Risk analysts often work in insurance, banking, and consulting.</p> 
+            <button type="submit"><a href="#" class="button">Get Analytics</a></button> 
+		</div>  
+	</div>  {% endcomment %}
+    </section>
+
+<!-- Our Client  -->
+<h1 class="atharv-hader">Our Client</h1>
+<div class="atharv">
+<div class="slider-container">
+    <div class="slider-wrapper">
+        <div class="slider">
+            {% for c in clientData %}
+            <img src="{{c.image.url}}" alt="Image">
+                {% endfor %}
+            {% comment %} <img src="/media/image.jpg" alt="Image 2">
+            <img src="/media/image.jpg" alt="Image 3">
+            <img src="/media/image.jpg" alt="Image 4">
+            <img src="/media/image.jpg" alt="Image 5">
+            <img src="/media/image.jpg" alt="Image 6"> {% endcomment %}
+        </div>
+    </div>
+</div>
+</div>    
+    
+    <section id="FAQ">
+
+      <div class="accordion">
+          <div class="image-box">
+              <img src="/static/ExploreDrushti/FAQs.jpg" alt="#">
+          </div>
+          <div class="accordion-text">
+              <div class="title">FAQ's</div>
+          
+          <ul class="faq-text">
+            {% for i in faqData %}
+              <li>
+                  <!-- a generic inline container element -->
+                  <div class="question-arrow">
+                      <span class="question">{{i.faq}}</span>
+                      <i class="bx bxs-chevron-down arrow"></i>
+                  </div>
+                  <p>{{i.faq_ans}}</p>
+                  <span class="line"></span>
+                </li>
+            {% endfor %}    
+          </ul>
+      </div>
+  </div>
+  </section>
+
+<!-- Section FAQs -->
+{% comment %} <section id="FAQ">
+
+    <div class="accordion">
+        <div class="image-box">
+            <img src="/static/ExploreDrushti/FAQs.jpg" alt="#">
+        </div>
+        <div class="accordion-text">
+            <div class="title">FAQ's</div>
+        
+        <ul class="faq-text">
+            <li>
+                <!-- a generic inline container element -->
+                <div class="question-arrow">
+                    <span class="question">What is the importance of data analysis in business?</span>
+                    <i class="bx bxs-chevron-down arrow"></i>
+                </div>
+                <p>Data analysis helps businesses make informed decisions, understand customer behavior, optimize processes, and identify opportunities for growth.</p>
+                <span class="line"></span>    
+            </li>
+
+            <li>
+                <div class="question-arrow">
+                    <span class="question">What is data analysis?</span>
+                    <i class="bx bxs-chevron-down arrow "></i>
+                </div>
+                <p>Data analysis involves examining data to extract useful information, draw conclusions, and support decision-making.</p>
+                <span class="line"></span>    
+            </li>
+
+            <li>
+                <div class="question-arrow">
+                    <span class="question">What are the benefits of data analysis for my business?</span>
+                    <i class="bx bxs-chevron-down arrow "></i>
+                </div>
+                <p>Identifying trends and patterns Improving decision-making Enhancing operational efficiency Increasing customer satisfaction Driving business growth Find out how data analysis can benefit your business at <a href="#">Drushti</a></p>
+                <span class="line"></span>    
+            </li>
+
+            <li>
+                <div class="question-arrow">
+                    <span class="question">Why industries use data analytics?</span>
+                    <i class="bx bxs-chevron-down arrow "></i>
+                </div>
+                <p>Virtually every industry can benefit from data analytics, including finance, healthcare, retail, marketing, telecommunications, and more. It helps in improving operational efficiency, understanding customer behavior, and making informed decisions.</p>
+                <span class="line"></span>    
+            </li>
+
+            <li>
+                <div class="question-arrow">
+                    <span class="question">How can I get started with data analytics?</span>
+                    <i class="bx bxs-chevron-down arrow "></i>
+                </div>
+                <p>As a starting point what we find works well is a data discovery workshop to understand the quantity and quality of the data you hold, where it is stored .Visit our <a href="">Drushti</a> service page to understant it.</a></p>
+                <span class="line"></span>    
+            </li>
+
+            <li>
+                <div class="question-arrow">
+                    <span class="question">What attributes are needed for a good analytics project?</span>
+                    <i class="bx bxs-chevron-down arrow "></i>
+                </div>
+                <p>A data-driven culture, data, time to test and learn and a good idea of what you want to achieve. Data analytics requires a much more in-depth approach to recording, analysing and dissecting data, and presenting the findings in an easy-to-understand visual format.Here our platform <a href="">Drushti</a> offers robust nature of data visualization.</p>
+                <span class="line"></span>    
+            </li>
+        </ul>
+    </div>
+</div>
+</section> {% endcomment %}
+
+<!-- section feedback -->
+
+<section class="opinion">
+    <div class="support-feedback no-js">
+        <div class="support-feedback-screen feedback-screen-query">
+          <h2>Was this helpful?</h2>
+          <ul class="query-buttons button-list">
+            <li class="query-button">
+              <input type="radio" name="feedback-query" id="feedback-query-yes" value="yes" />
+              <label for="feedback-query-yes" class="btn btn-outline btn-yes"><a href="/feedback/" style="text-decoration: none;"><b>Yes</b></a></label>
+            </li>
+            <li class="query-button">
+              <input type="radio" name="feedback-query" id="feedback-query-no" value="no" />
+              <label for="feedback-query-no" class="btn btn-outline btn-no"><a href="/feedback/" style="text-decoration: none;"><b>No</b></a></label>
+            </li>
+          </ul>
+        </div>
+</section>
+<br>
+<br>
+</main>
+<script>
+    const slider = document.querySelector('.slider');
+    const images = document.querySelectorAll('.slider img');
+    const totalImages = images.length;
+    let index = 0;
+    
+    function moveSlider() {
+        if (index < totalImages - 3) {
+            index++;
+        } else {
+            index = 0; // Reset to the beginning
+        }
+        slider.style.transform = `translateX(-${index * (248 + 16)}px)`; // 248px + 16px is the width of one image with margin
+    }
+    
+    // Move slider every 3 seconds
+    setInterval(moveSlider, 3000);
+</script>
+    <script src="/static/JavaScript/script.js"></script>
+    <script src="/static/JavaScript/drushti.js"></script>
+    <script src="/static/JavaScript/cart.js"></script>
+
+{% endblock content %}

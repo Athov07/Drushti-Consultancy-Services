@@ -1,0 +1,73 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="box-element" id="form-wrapper">
+            <form id="trackerForm" method="post" enctype="multipart/form-data">
+              {% csrf_token %} 
+                <div id="shipping-info">
+                    <hr>
+                    <p>Track Your Order</p>
+                    <hr>
+                    <div class="form-field">
+                        <input class="form-control" type="number" id="orderId" name="orderId" placeholder="Order Id">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="email" id="email" name="email" placeholder="email">
+                    </div>
+                </div>
+                <input class="btn btn-success btn-block" type="submit" value="Continue">
+                
+            </form>
+            <div id="shipping-info">
+                <hr>
+                <p>Your Order Status</p>
+                <hr>
+                <ol id="items">
+                    
+                  
+                </ol>
+            </div>
+        </div>
+        
+        <script>
+            $('#trackerForm').submit(function(event){
+                $('#items').empty();
+                var formData = {
+                    'orderId':$('input[name=orderId]').val(),
+                    'email':$('input[name=email]').val(),
+                    'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val()
+                };
+                $.ajax({
+                    type:'POST',
+                    url:'tracker',
+                    data:formData,
+                    encode:true
+                })
+                .done(function(data){
+                    console.log(data)
+                    updates = JSON.parse(data);
+                    if (updates.length > 0 & updates != {}){
+                    for (i=0; i<updates.length; i++){
+                        let text = updates[i]['text'];
+                        let time = updates[i]['time'];
+                        mystr = `<li>
+                                    ${text}
+                                    <span>${time}</span>
+                                </li>`
+                        $('#items').append(mystr);
+                    }
+                }
+                else{
+                    mystr = `<li>
+                                Sorry
+                            </li>`
+                    $('#items').append(mystr);
+                }
+                });
+                event.preventDefault();
+            });
+        </script>
+
+{% endblock content %}

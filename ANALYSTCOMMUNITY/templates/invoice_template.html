@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice #{{ order.id }}</title>
+    <style>
+        * { 
+            box-sizing: border-box; 
+        }
+            
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #40b736;
+            margin-top: 20px;
+        }
+
+        .logos {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #40b736;
+            margin-top: 40px;
+            margin-left: 20px;
+        }
+
+        .invoice-header h1 {
+            margin: 0;
+        }
+
+        .invoice-details, .shipping-address {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .invoice-details td, .shipping-address td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .invoice-details th, .shipping-address th {
+            background-color: rgb(163, 249, 151);
+            text-align: left;
+            padding: 8px;
+        }
+
+        .total-row {
+            font-weight: 500;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="invoice-header">
+    <div class="logo">Drushti   <img width="40" height="40" src="https://img.icons8.com/fluency/48/bullish.png" alt="bullish"/></div>
+    <h2>Invoice #{{ order.id }}</h2>
+    <p>Date: {{ order.date_orderd}}</p>
+</div>
+
+<div class="invoice-details">
+    <h3>Order Details</h3>
+    <h3><strong>Order ID:</strong> {{ order.id }}</h3>
+    <h3><strong>Transaction ID:</strong> {{ order.transaction_id }}</h3>
+    <h3><strong>Phone Number:</strong> {{ order.customer }}</h3>
+
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Services</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>Rs. {{ item.product.price }}</td>
+                    <td>Rs. {{ item.get_total }}</td>
+                </tr>
+            {% endfor %}
+            <tr class="total-row">
+                <td colspan="3" style="text-align: right;">Total:</td>
+                <td>Rs. {{ order.get_cart_total }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="shipping-address">
+    <h3>Shipping Address</h3>
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <th style="width: 30%;">Business Name</th>
+            <td>{{ shipping_address.business_name }}</td>
+        </tr>
+        <tr>
+            <th style="width: 30%;">Business Email</th>
+            <td>{{ shipping_address.business_email }}</td>
+        </tr>
+        <tr>
+            <th style="width: 30%;">Address</th>
+            <td>{{ shipping_address.business_address }}</td>
+        </tr>
+        <tr>
+            <th style="width: 30%;">Contact Name</th>
+            <td>{{ shipping_address.name }}</td>
+        </tr>
+        <tr>
+            <th style="width: 30%;">Shipping Address</th>
+            <td>{{ shipping_address.address }}, {{ shipping_address.city }}, {{ shipping_address.state }} {{ shipping_address.zipcode }}</td>
+        </tr>
+    </table>
+</div>
+<div class="logos">Drushti   <img width="30" height="30" src="https://img.icons8.com/fluency/48/bullish.png" alt="bullish"/></div>
+
+</body>
+</html>

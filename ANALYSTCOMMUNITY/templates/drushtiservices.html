@@ -1,0 +1,22 @@
+
+      {% extends 'main.html' %}
+      {% load static %}
+      {% block content %}
+            <h1>Our Services</h1> 
+            <div class="services-container">
+                {% for product in products %}
+                <div class="service-card"> 
+                    <div class="icon-container"> 
+                        <img width="100px" height="100px" src="{{product.image.url}}"> 
+                    </div> 
+                    <h3>{{product.name}}</h3> 
+                    <h3>Plan - {{product.type}}</h3>
+                    <h3><img width="30" height="30" src="https://img.icons8.com/pulsar-gradient/48/exchange-rupee.png">{{product.price|floatformat:2}}</h3> 
+                    <button type="submit" data-product="{{product.id}}" data-action="add" class="button update-cart">
+                      Add to Cart
+                    </button> 
+                </div> 
+                {% endfor %}
+            </div>
+        {% endblock content %}
+
